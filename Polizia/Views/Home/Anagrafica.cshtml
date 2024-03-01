@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Polizia.Models.Anagrafica>
+
+@{
+    ViewBag.Title = "Anagrafica";
+}
+
+<h2>Anagrafica</h2>
+
+<div class="container colCont p-3 rounded-5">
+    <p>
+        @Html.ActionLink("Aggiungi Trasgressore", "NuovoTrasgressore", null, new { @class = "btn btn-primary" })
+    </p>
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdAnagrafica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cognome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Indirizzo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Citta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CAP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CF)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdAnagrafica)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cognome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Indirizzo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Citta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CAP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CF)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</div>

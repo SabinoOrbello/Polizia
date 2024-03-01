@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="container flex-wrap ">
+    <span> @Html.ActionLink("Verbali per Trasgressore", "VerbaliPerTrasgressore", "Home", new { @class = "btn btn-primary" })</span>
+    <span> @Html.ActionLink("Violazioni superiori a 10 Punti", "ViolazioniSuperioriA10Punti", "Home", new { @class = "btn btn-primary" })</span>
+    <span> @Html.ActionLink("Violazioni importo superiore a 400 euro", "ViolazioniSuperioriA10Punti", "VisualizzaViolazioniImportoSuperiore", new { @class = "btn btn-primary" })</span>
+</div>
+

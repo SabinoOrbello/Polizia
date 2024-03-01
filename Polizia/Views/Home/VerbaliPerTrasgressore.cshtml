@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Polizia.Models.VerbaliPerTrasgressore>
+
+@{
+    ViewBag.Title = "VerbaliPerTrasgressore";
+}
+
+<h2>VerbaliPerTrasgressore</h2>
+
+
+@foreach (var trasgressore in Model)
+{
+    <div class="container colCont p-3 rounded-5 mb-3">
+        <h3>@trasgressore.NomeTrasgressore</h3>
+        <table class="table table-striped">
+            <tr>
+                <th>ID Verbale</th>
+                <th>Data Violazione</th>
+                <th>Indirizzo Violazione</th>
+                <th>Nominativo Agente</th>
+                <th>Data Trascrizione Verbale</th>
+                <th>Importo</th>
+                <th>Decurtamento Punti</th>
+
+            </tr>
+            @foreach (var verbale in trasgressore.Verbali)
+            {
+                <tr class="mb-3">
+                    <td>@verbale.IdVerbale</td>
+                    <td>@verbale.DataViolazione.ToShortDateString()</td>
+                    <td>@verbale.IndirizzoViolazione</td>
+                    <td>@verbale.NominativoAgente</td>
+                    <td>@verbale.DataTrascrizioneVerbale.ToShortDateString()</td>
+                    <td>@verbale.Importo</td>
+                    <td>@verbale.DecurtamentoPunti</td>
+
+                </tr>
+            }
+        </table>
+    </div>
+}
