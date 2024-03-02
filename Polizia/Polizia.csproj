@@ -182,7 +182,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Anagrafica.cshtml" />
-    <Content Include="Views\Home\CompilaVerbale.cshtml" />
     <Content Include="Views\Home\ElencoViolazioni.cshtml" />
     <Content Include="Views\Home\VerbaliPerTrasgressore.cshtml" />
     <Content Include="Views\Home\PuntiDecurtatiPerTrasgressore.cshtml" />
@@ -190,6 +189,7 @@
     <Content Include="Views\Home\VisualizzaViolazioniImportoSuperiore.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\NuovoTrasgressore.cshtml" />
+    <Content Include="Views\Home\CompilaVerbale.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

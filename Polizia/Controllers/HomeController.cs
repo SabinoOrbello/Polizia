@@ -33,13 +33,56 @@ namespace Polizia.Controllers
         public ActionResult CompilaVerbale()
         {
             // Recupera l'elenco dei trasgressori per popolare la vista
-            ViewBag.Anagrafiche = GetTrasgressori();
+            List<Anagrafica> trasgressori = GetTrasgressori();
+            var trasgressoriSelectList = trasgressori
+                .Select(t => new SelectListItem
+                {
+                    Value = t.IdAnagrafica.ToString(),
+                    Text = $"{t.Nome} {t.Cognome}"
+                })
+                .ToList();
+
+            // Salva la lista di SelectListItem in ViewBag.Anagrafiche
+            ViewBag.Anagrafiche = trasgressoriSelectList;
 
             // Recupera l'elenco dei tipi di violazione per popolare la vista
-            ViewBag.TipiViolazione = GetElencoViolazioni();
+            List<SelectListItem> tipiViolazione = GetElencoViolazioni2();
+
+            // Salva la lista di SelectListItem in ViewBag.TipiViolazione
+            ViewBag.TipiViolazione = tipiViolazione;
 
             return View();
         }
+
+        private List<SelectListItem> GetElencoViolazioni2()
+        {
+            List<SelectListItem> elencoViolazioni = new List<SelectListItem>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT * FROM TipoViolazione";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        SelectListItem tipoViolazione = new SelectListItem
+                        {
+                            Value = reader["IdViolazione"].ToString(),
+                            Text = reader["Descrizione"].ToString()
+                        };
+
+                        elencoViolazioni.Add(tipoViolazione);
+                    }
+                }
+            }
+
+            return elencoViolazioni;
+        }
+
+
 
         // Azione per compilare un nuovo verbale (POST)
         [HttpPost]
@@ -65,6 +108,7 @@ namespace Polizia.Controllers
         {
             List<Anagrafica> trasgressori = new List<Anagrafica>();
 
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -88,6 +132,7 @@ namespace Polizia.Controllers
                         };
 
                         trasgressori.Add(trasgressore);
+
                     }
                 }
             }

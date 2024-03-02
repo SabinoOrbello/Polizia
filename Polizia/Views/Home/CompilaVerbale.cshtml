@@ -7,10 +7,10 @@
 <h2>CompilaVerbale</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Verbale</h4>
         <hr />
@@ -71,23 +71,26 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdAnagrafica, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdAnagrafica, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdAnagrafica, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdViolazione, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdViolazione, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdViolazione, "", new { @class = "text-danger" })
-            </div>
+            @Html.LabelFor(model => model.IdAnagrafica, "Trasgressore:", htmlAttributes: new { @class = "control-label" })
+            @Html.DropDownListFor(model => model.IdAnagrafica, (IEnumerable<SelectListItem>)ViewBag.Anagrafiche, "-- Seleziona Trasgressore --", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdAnagrafica, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdViolazione, "Tipo Violazione:", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.DropDownList("IdViolazione", (IEnumerable<SelectListItem>)ViewBag.TipiViolazione, "-- Seleziona Tipo Violazione --", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdViolazione, "", new { @class = "text-danger" })
         </div>
 
-        <div class="form-group mb-3 mt-3">
+        <!-- Altri campi del Verbale -->
+
+        <div class="form-group">
+            <input type="submit" value="Compila" class="btn btn-primary" />
+        </div>
+        }
+
+        <div class="form-group mb-3">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-success" />
             </div>
